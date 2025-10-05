@@ -6,7 +6,8 @@ class PointsForPlace:
             print("Баллы начисляются только первым 100 участникам")
         elif place < 1:
             print("Спортсмен не может занять нулевое или отрицательное место")
-        points = 101 - place
+        else:
+            points = 101 - place
         return points
 
 
@@ -16,16 +17,15 @@ class PointsForMeters:
         points = 0
         if meters < 0:
             print("Количество метров не может быть отрицательным")
-        points = meters*0.5
+        else:
+            points = meters*0.5
         return points
 
 class TotalPoints(PointsForPlace, PointsForMeters):
-    @staticmethod
-    def get_total_points(place, meters):
-        total = PointsForPlace.get_points_for_place(place) + PointsForMeters.get_points_for_meters(meters)
-        return total
-
-
+    def get_total_points(self, place, meters):
+        total = self.get_points_for_place(place) + self.get_points_for_meters(meters)
+        return total    
+    
 points_for_place = PointsForPlace()
 print(points_for_place.get_points_for_place(10))
 
